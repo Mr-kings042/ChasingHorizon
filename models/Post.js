@@ -20,24 +20,25 @@ const PostSchema = new mongoose.Schema({
         max: 2555
         },
         user:{
-            type: UserSchema,
+            type: mongoose.Schema.Types.ObjectId,
+             ref: 'User',
             required: true
 
         },
         comments:{
-            type:[CommentSchema],
+            type:[{
+                type: mongoose.Schema.Types.ObjectId,
+                ref: 'Comment'
+        }],
             required: false
         },
+
         thumbnail:{
-            type: photoSchema,
-            required: false
-        },
-        photos: {
-            type: [photoSchema],
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Photo',
             required: false
         },
    
-    
 },
 {
     timestamps: true

@@ -10,7 +10,7 @@ const CommentSchema = new mongoose.Schema({
         max: 1000
         },
         user:{
-            type: UserSchema,
+            type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true
             },
