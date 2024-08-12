@@ -16,12 +16,11 @@ if(!username || !email || !password){
 let photo = profilePicture || null;
 const hashedPassword = await bcrypt.hash(password,10);
 //check if email and username already exists
-const foundUser = await User.find({$or: [{email: email}, {username: username}]}).exec();  
+const foundUser = await User.findOne({$or: [{email: email}, {username: username}]}).exec();  
 
 if (foundUser) {
-        res.status(400).send({
-            message: "User already exists"});
-        return;
+res.status(400).send({message: "User already exists"});
+return;
         }
 
 
@@ -49,7 +48,7 @@ const user = new User ({
 const getUser = asynchandler(async (req,res) =>{
    try{
     const userId = req.user.userId;
-    console.log('userId:', userId);
+ 
     if (!mongoose.Types.ObjectId.isValid(userId)) {
          res.status(400).json({ message: "Invalid user ID" });
         return;
@@ -90,5 +89,15 @@ if (!updatedUser){
 res.status(200).json({ user: updatedUser });
  });
 
+ const archiveUser = asynchandler (async (req,res) =>{
+    const userId = req.user.userId;
+    const archivedUser = await User.findByIdAndUpdate(userId, { archive: true }, { new: true });
+    if (!archivedUser){
+        res.status(404).json({ message: "User not found" });
+        return;
+    }
+    res.status(200).json({ user: archivedUser });
 
-module.exports = {createUser, getUser, updateUser};
+ });
+
+module.exports = {createUser, getUser, updateUser, archiveUser};
