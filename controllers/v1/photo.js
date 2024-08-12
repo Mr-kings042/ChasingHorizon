@@ -25,7 +25,7 @@ const uploadPhoto = asynchandler(async(req,res)=>{
     const file = uploadResult[0];
     console.log('url: ', file.publicUrl());
 
-    // const publicUrl = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
+   
   
     const publicUrl = file.publicUrl();
    // save to database

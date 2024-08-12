@@ -1,3 +1,4 @@
 node_modules
 .env
 firebasesdk.json
+ // const publicUrl = `https://storage.googleapis.com/${bucket.name}/${file.name}`;
