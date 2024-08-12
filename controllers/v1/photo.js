@@ -42,5 +42,18 @@ const uploadPhoto = asynchandler(async(req,res)=>{
     }
 
 });
+const getPhotos = asynchandler(async(req,res)=>{
+const photo = await Photo.find();
+res.status(200).send({photo});
+});
+const getPhoto = asynchandler(async(req,res)=>{
+    const id = req.params.id;
+    const photo = await Photo.findById(id);
+    if(!photo){
+        res.status(404).json({message: 'Photo not found'});
+        return;
+    }
+    res.status(200).send({photo});
+});
 
-module.exports = {uploadPhoto};
+module.exports = {uploadPhoto, getPhotos, getPhoto};
