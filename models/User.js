@@ -23,9 +23,9 @@ const UserSchema = new mongoose.Schema({
     max: 1024
   },
  profilePicture: {
-  type: mongoose.Schema.Types.ObjectId,
-    ref: 'Photo',
-    required: false
+  type: String,
+    required: false,
+    default: null
   },
   archive: {
     type: Boolean,

@@ -6,8 +6,8 @@ const verifyToken = require('../../middleware/Tokenhandler');
 
 const upload = multer({ dest: 'uploads/' });
 const router = express.Router();
-router.post('/', upload.single('photo'), verifyToken, uploadPhoto);
-router.get('/', verifyToken, getPhoto);
-router.get('/:id',verifyToken, getPhotos);
+router.post('/', verifyToken, uploadPhoto);
+router.get('/:id', verifyToken, getPhoto);
+router.get('/',verifyToken, getPhotos);
 
 module.exports = router;

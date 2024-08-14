@@ -32,10 +32,14 @@ const PostSchema = new mongoose.Schema({
         }],
             required: false
         },
-
+        tags: 
+            [{ type: mongoose.Schema.Types.ObjectId,
+             ref: 'Tag' ,
+             required: true
+            }],
+             
         thumbnail:{
-            type: mongoose.Schema.Types.ObjectId,
-            ref: 'Photo',
+            type: String,
             required: false
         },
    
