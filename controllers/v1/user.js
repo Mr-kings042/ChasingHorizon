@@ -1,19 +1,27 @@
 const asynchandler = require('express-async-handler');
 const mongoose = require('mongoose');
 const bcrypt = require ('bcrypt');
+const createPhoto = require('../../lib/shared');
 
 const User = require('../../models/User');
 
 
-const createUser = asynchandler (async (req,res)=> {
-    const {username,email,password, profilePicture} = req.body;
+const createUser = asynchandler (async (req, res)=> {
+    const {username,email,password} = req.body;
 if(!username || !email || !password){
     return res.status(400).send({
         message:"Please fill all the fields"
     });
 }
+console.log("file: ", req.file);
+let photo;
+if(req.file){
+ photo = await createPhoto(req.file);
+ photo = photo.url;
+} else{
+    photo = null;
+}
 
-let photo = profilePicture || null;
 const hashedPassword = await bcrypt.hash(password,10);
 //check if email and username already exists
 const foundUser = await User.findOne({$or: [{email: email}, {username: username}]}).exec();  
