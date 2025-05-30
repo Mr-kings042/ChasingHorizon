@@ -21,7 +21,7 @@ A RESTful API for a blogging platform supporting authentication, user management
 
 1. **Clone the repository:**
    ```sh
-   git clone <https://github.com/Mr-kings042/ChasingHorizon>
+   git clone https://github.com/Mr-kings042/ChasingHorizon
    cd ChasingHorizon
    ```
 
